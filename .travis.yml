@@ -10,4 +10,4 @@ matrix:
      before_script:
        - "npm install"
      script:
-       - "node index.js"
+       - "node test/unit/initial.test.js"
