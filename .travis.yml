@@ -1,10 +1,19 @@
-language: php
-php:
-  - '5.4'
-  - '5.6'
-  - '7.0'
-  - hhvm # on Trusty only
-  - nightly
+matrix:
+  include:
+    - language: php
+      python: 5.4
+
+    - language: node_js
+      node_js:
+        - "iojs"
+        - "4"
+# language: php
+# php:
+#   - '5.4'
+#   - '5.6'
+#   - '7.0'
+#   - hhvm # on Trusty only
+#   - nightly
   
 # image: node:6.9.4
 
