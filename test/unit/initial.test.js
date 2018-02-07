@@ -1,9 +1,9 @@
 var expect = require('chai').expect,
     newman = require('newman'),
-    exec = require('shelljs.exec'),
+    shelljs = require('shelljs'),
     sdk = require('postman-collection'),
     fs = require('fs'),
-    series = require('async-series'),
+    async = require('async'),
     convert = require('../../lib');
 
 describe('Request snippet', function () {
@@ -50,7 +50,7 @@ describe('Request snippet', function () {
             outputNewman = '',
             snippet = convert(request, {indentType: 'tab', indentCount: 1});
 
-        series([
+        async.series([
             function (done) {
                 newman.run({
                     collection: require('../unit/fixtures/sample_collection.json')
@@ -77,7 +77,7 @@ describe('Request snippet', function () {
                 });
             },
             function (done) {
-                outputScript = exec('php test/unit/fixtures/codesnippet.php', {silent: true});
+                outputScript = shelljs.exec('php test/unit/fixtures/codesnippet.php', {silent: true});
                 done(null);
             },
             function (done) {
