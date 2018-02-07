@@ -52,6 +52,7 @@ describe('Request snippet', function () {
 
         async.series([
             function (done) {
+                console.log('newman');
                 newman.run({
                     collection: require('../unit/fixtures/sample_collection.json')
                 }).on('start', function (err) { // on start of run, log to console
@@ -69,6 +70,7 @@ describe('Request snippet', function () {
                 });
             },
             function (done) {
+                console.log('1');
                 fs.writeFile('test/unit/fixtures/codesnippet.php', snippet, function (err) {
                     if (err) {
                         return done(err);
@@ -77,11 +79,15 @@ describe('Request snippet', function () {
                 });
             },
             function (done) {
+                console.log('2');
                 outputScript = shelljs.exec('php test/unit/fixtures/codesnippet.php', {silent: true});
                 done(null);
             },
             function (done) {
-                expect(outputNewman).to.deep.equal(outputScript.stdout);
+                console.log('3');
+                outputNewman = JSON.parse(outputNewman);
+                delete outputNewman.headers['user-agent'];
+                expect(outputNewman).to.deep.equal(JSON.parse(outputScript.stdout));
                 done(null);
             }
         ], function (err) {
@@ -93,5 +99,5 @@ describe('Request snippet', function () {
                 finish();
             }
         });
-    });
+    }).timeout(10000);
 });
