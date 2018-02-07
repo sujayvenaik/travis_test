@@ -48,9 +48,10 @@ describe('Request snippet', function () {
                 outputNewman = JSON.parse(outputNewman);
                 delete outputNewman.headers['user-agent'];
                 delete outputNewman.headers['accept-encoding'];
-                delete JSON.parse(outputScript.stdout).headers['accept-encoding'];
+                outputScript = JSON.parse(outputScript);
+                delete outputScript.headers['accept-encoding'];
                 // expect(1).to.be.a('number');
-                expect(outputNewman).to.deep.equal(JSON.parse(outputScript.stdout));
+                expect(outputNewman).to.deep.equal(outputScript.stdout);
                 done(null);
             }
         ], function (err) {
