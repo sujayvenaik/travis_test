@@ -1,0 +1,52 @@
+{
+	"info": {
+		"name": "Hi",
+		"_postman_id": "1ca3d7fb-6fe6-fc30-d258-e09a5694910e",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1st ",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "1",
+						"value": "a"
+					},
+					{
+						"key": "2",
+						"value": "b"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "https://postman-echo.com/post?pm=0&postman=1",
+					"protocol": "https",
+					"host": [
+						"postman-echo",
+						"com"
+					],
+					"path": [
+						"post"
+					],
+					"query": [
+						{
+							"key": "pm",
+							"value": "0",
+							"equals": true
+						},
+						{
+							"key": "postman",
+							"value": "1",
+							"equals": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
