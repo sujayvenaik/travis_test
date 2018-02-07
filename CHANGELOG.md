@@ -1,1 +1,0 @@
-# CodeGen-Php-Curl Changelog
