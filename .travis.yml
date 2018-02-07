@@ -1,7 +1,12 @@
 matrix:
-  include:
-    - language: php
-      php: 5.4
+ include:
+   - language: php
+     php: 5
 
-    - language: node_js
-      node_js: 4
+   - language: node_js
+     node_js:
+       - "6"
+     before_script:
+       - "npm install"
+     script:
+       - "node index.js"
