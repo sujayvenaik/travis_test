@@ -13,7 +13,7 @@ describe('Request snippet', function () {
             outputNewman = '',
             request = collection.items.members[0].request,
             snippet = convert(request, {indentType: 'tab', indentCount: 1});
-
+        console.log('11');
         async.series([
             function (done) {
                 console.log('newman');
@@ -36,7 +36,7 @@ describe('Request snippet', function () {
             function (done) {
                 console.log('writing file');
                 console.log(snippet);
-                fs.writeFile('test/unit/fixtures/codesnippet.php', snippet, function (err) {
+                fs.writeFile('test/unit/fixtures/code.py', snippet, function (err) {
                     if (err) {
                         return done(err);
                     }
@@ -45,7 +45,7 @@ describe('Request snippet', function () {
             },
             function (done) {
                 console.log('execute');
-                outputScript = shelljs.exec('php test/unit/fixtures/codesnippet.php', {silent: true});
+                outputScript = shelljs.exec('python test/unit/fixtures/code.py', {silent: true});
                 done(null);
             },
             function (done) {
@@ -56,6 +56,7 @@ describe('Request snippet', function () {
                 delete outputNewman.headers['accept-encoding'];
                 outputScript = JSON.parse(outputScript.stdout);
                 delete outputScript.headers['accept-encoding'];
+                delete outputScript.headers['user-agent'];
                 console.log(outputNewman);
                 console.log(outputNewman);
                 // expect(1).to.be.a('number');
