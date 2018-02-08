@@ -1,9 +1,12 @@
-import requests
-url = "https://postman-echo.com/post?pm=0&postman=1"
-payload=''
+import http.client
+conn = http.client.HTTPConnection("postman-echo.com")
+payload = ''
 headers = {
 	'1': 'a',
 	'2': 'b',
 }
-response = requests.request("POST", url, data=payload, headers=headers)
-print(response.text)
+conn.request("POST", "/post", payload, headers)
+res = conn.getresponse()
+data = res.read()
+
+print(data.decode("utf-8"))

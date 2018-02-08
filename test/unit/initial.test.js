@@ -45,7 +45,7 @@ describe('Request snippet', function () {
             },
             function (done) {
                 console.log('execute');
-                outputScript = shelljs.exec('python test/unit/fixtures/code.py', {silent: true});
+                outputScript = shelljs.exec('python3 test/unit/fixtures/code.py', {silent: true});
                 done(null);
             },
             function (done) {
