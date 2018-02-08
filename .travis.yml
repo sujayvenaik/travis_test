@@ -1,21 +1,8 @@
 language: node_js
 node_js: 6
-addons:
- apt:
-  packages:
-   - php5-cli
-   - php-pear
-   - libcurl4-openssl-dev
-   - libidn11-dev
-   - libidn2-0-dev
-   - libicu-dev
-   - libevent-dev
-before_install:
- - make -f travis/pecl/Makefile php
- - make -f travis/pecl/Makefile pecl PECL=raphf:raphf:2.0.0
- - make -f travis/pecl/Makefile pecl PECL=propro:propro:2.0.1
- - make -f travis/pecl/Makefile ext PECL=http
+
 before_script:
+ - "pecl install pecl_http"
  - "npm install"
 
 script:
