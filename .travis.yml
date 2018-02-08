@@ -3,8 +3,8 @@ node_js: 6
  
 before_script:
  - "npm install"
-before_install:
- - "apt-get install php7.0"
- - "printf "\n" | pecl install pecl_http"
+# before_install:
+#  - "apt-get install php7.0"
+#  - "printf "\n" | pecl install pecl_http"
 script:
   - "mocha test/unit/initial.test.js"
