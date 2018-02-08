@@ -1,7 +1,7 @@
 language: node_js
 node_js: "6"
 before_install:
-- "pecl install pecl_http-2.5.5"
+- "pecl install pecl_http-2.5.5 -y"
 before_script:
  - "npm install"
 script:
