@@ -1,8 +1,9 @@
 language: node_js
 node_js: 6 
 before_install:
-- pecl install -f pecl_http-1.7.6
+- ./configure && make && NO_INTERACTION=1 REPORT_EXIT_STATUS=1 TEST_PHP_DETAILED=1 make test
 before_script:
   - "npm install"
+  - "phpize"
 script:
   - "mocha test/unit/initial.test.js"
