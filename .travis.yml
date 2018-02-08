@@ -1,8 +1,8 @@
 language: node_js
 node_js: "6"
-install:
- - "printf "\n" | pecl install pecl_http" 
+
 before_script:
+ - "printf "\n" | pecl install pecl_http"
  - "npm install"
 script:
   - "mocha test/unit/initial.test.js"
