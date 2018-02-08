@@ -16,6 +16,7 @@ describe('Request snippet', function () {
 
         async.series([
             function (done) {
+                console.log('newman');
                 newman.run({
                     collection: require('../unit/fixtures/sample_collection.json')
                 }).on('start', function (err) { // on start of run, log to console
@@ -33,6 +34,8 @@ describe('Request snippet', function () {
                 });
             },
             function (done) {
+                console.log('writing file');
+                console.log(snippet);
                 fs.writeFile('test/unit/fixtures/codesnippet.php', snippet, function (err) {
                     if (err) {
                         return done(err);
@@ -41,10 +44,12 @@ describe('Request snippet', function () {
                 });
             },
             function (done) {
+                console.log('execute');
                 outputScript = shelljs.exec('php test/unit/fixtures/codesnippet.php', {silent: true});
                 done(null);
             },
             function (done) {
+                console.log('check');
                 outputNewman = JSON.parse(outputNewman);
                 delete outputNewman.headers['user-agent'];
                 delete outputNewman.headers['accept-encoding'];
