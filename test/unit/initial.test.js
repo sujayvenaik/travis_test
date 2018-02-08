@@ -50,6 +50,8 @@ describe('Request snippet', function () {
                 delete outputNewman.headers['accept-encoding'];
                 outputScript = JSON.parse(outputScript.stdout);
                 delete outputScript.headers['accept-encoding'];
+                console.log(outputNewman);
+                console.log(outputNewman);
                 // expect(1).to.be.a('number');
                 expect(outputNewman).to.deep.equal(outputScript);
                 done(null);
