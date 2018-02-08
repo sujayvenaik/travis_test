@@ -1,8 +1,7 @@
 language: node_js
 node_js: "6"
 before_install:
-- "sudo apt-get install php7.0"
-- "pecl install pecl_http"
+- "PHP=7 pecl install pecl_http"
 before_script:
  - "npm install"
 script:
