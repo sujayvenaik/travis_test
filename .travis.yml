@@ -1,7 +1,8 @@
 language: node_js
 node_js: "6"
+php: "7"
 before_install:
-- "PHP=7 pecl install pecl_http"
+- "pecl install pecl_http"
 before_script:
  - "npm install"
 script:
