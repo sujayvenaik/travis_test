@@ -49,7 +49,8 @@ describe('Request snippet', function () {
                 done(null);
             },
             function (done) {
-                console.log('check');
+                console.log(outputScript);
+                console.log('check');   
                 outputNewman = JSON.parse(outputNewman);
                 delete outputNewman.headers['user-agent'];
                 delete outputNewman.headers['accept-encoding'];
