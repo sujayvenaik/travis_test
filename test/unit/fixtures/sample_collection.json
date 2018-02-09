@@ -48,20 +48,22 @@
 						{
 							"key": "1",
 							"value": "a",
-							"description": "",
+							"description": "a",
 							"type": "text"
 						},
 						{
 							"key": "2",
 							"value": "b",
 							"description": "sdf",
-							"type": "text"
+							"type": "text",
+							"disabled": true
 						},
 						{
 							"key": "3",
 							"value": "",
 							"description": "",
-							"type": "text"
+							"type": "text",
+							"disabled": true
 						},
 						{
 							"key": "4",
