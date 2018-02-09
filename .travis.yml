@@ -6,3 +6,6 @@ before_script:
  - "npm install"
 script:
   - "mocha test/unit/initial.test.js"
+cache:
+  directories:
+    - node_modules
