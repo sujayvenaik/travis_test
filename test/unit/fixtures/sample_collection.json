@@ -1,59 +1,56 @@
 {
 	"info": {
-		"name": "jsahdakls",
-		"_postman_id": "1ca3d7fb-6fe6-fc30-d258-e09a5694910e",
-		"description": "sknvskdnvkj",
+		"name": "     p ",
+		"_postman_id": "986ae312-d4f0-44c2-9ce9-79cd953e65bd",
+		"description": "",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "1st ",
+			"name": "Request Headers copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var responseJSON;",
+							"try {",
+							"    tests[\"Body contains headers\"] = responseBody.has(\"headers\");",
+							"    responseJSON = JSON.parse(responseBody);",
+							"    tests[\"Header contains host\"] = \"host\" in responseJSON.headers;",
+							"    tests[\"Header contains test parameter sent as part of request header\"] = \"my-sample-header\" in responseJSON.headers;",
+							"}",
+							"catch (e) { }",
+							"",
+							"",
+							"",
+							""
+						]
+					}
+				}
+			],
 			"request": {
-				"auth": {
-					"type": "noauth"
-				},
-				"method": "POST",
+				"method": "GET",
 				"header": [
 					{
-						"key": "1",
-						"value": "a",
-						"disabled": true
-					},
-					{
-						"key": "2",
-						"value": "b",
-						"disabled": true
-					},
-					{
-						"key": "Content-Type",
-						"value": "application/x-www-form-urlencoded"
+						"key": "my-sample-header",
+						"value": "Lorem ipsum dolor sit amet"
 					}
 				],
 				"body": {},
 				"url": {
-					"raw": "https://postman-echo.com/post?pm=0&postman=1",
+					"raw": "https://postman-echo.com/headers",
 					"protocol": "https",
 					"host": [
 						"postman-echo",
 						"com"
 					],
 					"path": [
-						"post"
-					],
-					"query": [
-						{
-							"key": "pm",
-							"value": "0",
-							"equals": true
-						},
-						{
-							"key": "postman",
-							"value": "1",
-							"equals": true
-						}
+						"headers"
 					]
 				},
-				"description": ""
+				"description": "A `GET` request to this endpoint returns the list of all request headers as part of the response JSON.\nIn Postman, sending your own set of headers through the [Headers tab](https://www.getpostman.com/docs/requests#headers?source=echo-collection-app-onboarding) will reveal the headers as part of the response."
 			},
 			"response": []
 		}
@@ -62,7 +59,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "f7c6ac7e-329d-4cc3-9a03-5e7ae5c54d59",
+				"id": "f866e339-bfa1-4035-bdf7-d306ac86bd30",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -72,7 +69,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "aac71447-fbd0-43c7-a935-4096d5aff469",
+				"id": "96e20e60-dc1a-4fe3-a53b-a3207bdbe283",
 				"type": "text/javascript",
 				"exec": [
 					""
