@@ -51,22 +51,22 @@ describe('Request snippet', function () {
                 console.log(JSON.parse(outputNewman));
                 expect(1).to.be.a('number');
                 done(null);
+            },
+            function (done) {
+                console.log(outputScript);
+                console.log('check');   
+                outputNewman = JSON.parse(outputNewman);
+                delete outputNewman.headers['user-agent'];
+                delete outputNewman.headers['accept-encoding'];
+                outputScript = JSON.parse(outputScript.stdout);
+                delete outputScript.headers['accept-encoding'];
+                delete outputScript.headers['user-agent'];
+                console.log(outputNewman);
+                console.log(outputNewman);
+                // expect(1).to.be.a('number');
+                expect(outputNewman).to.deep.equal(outputScript);
+                done(null);
             }
-            // function (done) {
-            //     console.log(outputScript);
-            //     console.log('check');   
-            //     outputNewman = JSON.parse(outputNewman);
-            //     delete outputNewman.headers['user-agent'];
-            //     delete outputNewman.headers['accept-encoding'];
-            //     outputScript = JSON.parse(outputScript.stdout);
-            //     delete outputScript.headers['accept-encoding'];
-            //     delete outputScript.headers['user-agent'];
-            //     console.log(outputNewman);
-            //     console.log(outputNewman);
-            //     // expect(1).to.be.a('number');
-            //     expect(outputNewman).to.deep.equal(outputScript);
-            //     done(null);
-            // }
         ], function (err) {
             if (err) {
                 console.log('in error');
