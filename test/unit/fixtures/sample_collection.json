@@ -12,15 +12,17 @@
 				"auth": {
 					"type": "noauth"
 				},
-				"method": "GET",
+				"method": "POST",
 				"header": [
 					{
 						"key": "1",
-						"value": "a"
+						"value": "a",
+						"disabled": true
 					},
 					{
 						"key": "2",
-						"value": "b"
+						"value": "b",
+						"disabled": true
 					},
 					{
 						"key": "Content-Type",
