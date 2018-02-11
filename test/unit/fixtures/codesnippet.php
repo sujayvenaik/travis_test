@@ -4,11 +4,11 @@ $client = new http\Client;
 $request = new http\Client\Request;
 
 $body = new http\Message\Body;
-$body->addForm(array(
+$body->addForm(
   '1' => 'ws',
   's' => 'a',
   'wq' => 'qqqq'
-), NULL);
+);
 
 $request->setRequestUrl('https://postman-echo.com/post');
 $request->setRequestMethod('POST');
