@@ -14,9 +14,10 @@ $request->setRequestUrl('https://postman-echo.com/post');
 $request->setRequestMethod('POST');
 $request->setBody($body);
 
-// $request->setHeaders(array(
-//   'Content-Type' => 'text/plain'
-// ));
+$request->setHeaders(array(
+  'abc' => '123',
+  'hi' => 'bye'
+));
 
 $client->enqueue($request)->send();
 $response = $client->getResponse();
