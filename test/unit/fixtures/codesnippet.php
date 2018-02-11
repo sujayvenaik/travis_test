@@ -15,8 +15,7 @@ $request->setRequestMethod('POST');
 $request->setBody($body);
 
 $request->setHeaders(array(
-  'abc' => '123',
-  'hi' => 'bye'
+  
 ));
 
 $client->enqueue($request)->send();
