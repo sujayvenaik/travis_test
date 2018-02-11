@@ -15,7 +15,7 @@ $request->setRequestMethod('POST');
 $request->setBody($body);
 
 $request->setHeaders(array(
-  'Content-Type' => 'application/x-www-form-urlencoded'
+  'Content-Type' => 'text/plain'
 ));
 
 $client->enqueue($request)->send();
