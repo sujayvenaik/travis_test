@@ -5,7 +5,7 @@ $body = new http\Message\Body;
 $body->addForm(array(
     'fdjks' => 'dsf',
 
-), NULL);
+), array());
 $request->setBody($body);
 $request->setRequestUrl('https://postman-echo.com/post');
 $request->setRequestMethod('POST');
