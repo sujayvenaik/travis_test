@@ -14,9 +14,9 @@ $request->setRequestUrl('https://postman-echo.com/post');
 $request->setRequestMethod('POST');
 $request->setBody($body);
 
-// $request->setHeaders(array(
-//   'Content-Type' => 'application/x-www-form-urlencoded'
-// ));
+$request->setHeaders(array(
+  'Content-Type' => 'text/plain'
+));
 
 $client->enqueue($request)->send();
 $response = $client->getResponse();
