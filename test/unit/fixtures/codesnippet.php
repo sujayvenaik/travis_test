@@ -9,9 +9,9 @@ $body->addForm(array(
   's' => 'a',
   'wq' => 'qqqq'
 ), NULL);
-// $request->setHeaders(array(
-//     'Content-Type' => 'text/plain'
-//   ));
+$request->setHeaders(array(
+    'Content-Type' => 'text/plain'
+  ));
 // $request->setBody($body);
 
 
@@ -21,18 +21,3 @@ $client->enqueue($request)->send();
 $response = $client->getResponse();
 
 echo $response->getBody();
-
-
-// $msg = new http\Message\Body();
-// $msg->addForm([
-//   'field1' => 'value',
-//   'field2' => 'value2'
-// ]);
-
-// $headers = null;
-
-// $client = new http\Client();
-// $client->enqueue($request);
-// $client->send();
-
-// $response = $client->getResponse();
