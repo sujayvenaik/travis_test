@@ -10,13 +10,14 @@ $body->addForm(array(
   'wq' => 'qqqq'
 ), NULL);
 $request->setBody($body);
-$request->setRequestUrl('https://postman-echo.com/post');
+$request->setRequestUrl('');
 $request->setRequestMethod('POST');
 
 
-$request->setHeaders(array(
+$headers = (array(
   'Content-Type' => 'text/plain'
 ));
+$request = new http\Client\Request('POST', 'https://postman-echo.com/post',$headers, $body);
 
 $client->enqueue($request)->send();
 $response = $client->getResponse();
