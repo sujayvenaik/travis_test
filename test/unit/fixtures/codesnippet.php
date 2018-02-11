@@ -1,21 +1,24 @@
 <?php
+
 $client = new http\Client;
 $request = new http\Client\Request;
-$body = new http\Message\Body;
-$body->append(new http\QueryString(array(
-'1' => 'a',
-'2' => 'b',
-'c' => 'c',
 
-)));
-$request->setBody($body);
+$body = new http\Message\Body;
+$body->addForm(array(
+  '1' => 'ws',
+  's' => 'a',
+  'wq' => 'qqqq'
+), NULL);
+
 $request->setRequestUrl('https://postman-echo.com/post');
 $request->setRequestMethod('POST');
+$request->setBody($body);
+
 $request->setHeaders(array(
-'Content-Type' => 'application/x-www-form-urlencoded',
+  'Content-Type' => 'application/x-www-form-urlencoded'
 ));
+
 $client->enqueue($request)->send();
 $response = $client->getResponse();
 
 echo $response->getBody();
-?>
