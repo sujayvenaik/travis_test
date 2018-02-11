@@ -10,7 +10,7 @@ $body->addForm(array(
   'wq' => 'qqqq'
 ), NULL);
 
-$headers = ['Content-Type' => 'application/x-www-form-urlencoded'];
+$headers = ['Content-Type' => 'text/plain'];
 
 $request = new http\Client\Request('POST', 'https://postman-echo.com/post',$headers , $body );
 $client->enqueue($request)->send();
