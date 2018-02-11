@@ -9,25 +9,16 @@ $body->addForm(array(
   's' => 'a',
   'wq' => 'qqqq'
 ), NULL);
-$headers = NULL;  
-$request = new http\Client\Request('POST', 'https://postman-echo.com/post', null, $body);
+
+$request->setRequestUrl('https://postman-echo.com/post');
+$request->setRequestMethod('POST');
+$request->setBody($body);
+
+// $request->setHeaders(array(
+//   'Content-Type' => 'application/x-www-form-urlencoded'
+// ));
 
 $client->enqueue($request)->send();
 $response = $client->getResponse();
 
 echo $response->getBody();
-?>
-// $msg = new http\Message\Body();
-// $msg->addForm([
-//   'field1' => 'value',
-//   'field2' => 'value2'
-// ]);
-
-// $headers = null;
-
-
-// $client = new http\Client();
-// $client->enqueue($request);
-// $client->send();
-
-// $response = $client->getResponse();
