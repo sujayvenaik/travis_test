@@ -1,18 +1,18 @@
 <?php
 
 $client = new http\Client;
-$request = new http\Client\Request;
 
+$request = new http\Client\Request;
 $body = new http\Message\Body;
 $body->addForm(array(
   '1' => 'ws',
   's' => 'a',
   'wq' => 'qqqq'
 ), NULL);
-
+$request->setBody($body);
 $request->setRequestUrl('https://postman-echo.com/post');
 $request->setRequestMethod('POST');
-$request->setBody($body);
+
 
 $request->setHeaders(array(
   'Content-Type' => 'text/plain'
