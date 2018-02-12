@@ -2,6 +2,7 @@ language: node_js
 node_js: "6"
 before_install:
   - "yes '' | pecl install pecl_http-2.5.5 "
+  - "yes '' |pear install --alldeps HTTP_Request2-alpha"
 before_script:
  - "npm install"
 script:
