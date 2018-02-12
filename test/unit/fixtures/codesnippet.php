@@ -1,14 +1,11 @@
 <?php
-$request = new HttpRequest();
-$request->setUrl('https://postman-echo.com/headers');
-$request->setMethod(HTTP_METH_GET);
-$request->setHeaders(array(
-    'my-sample-header' => 'Lorem ipsum dolor sit amet',
-));
+$req = new HTTP_Request2('https://postman-echo.com/headers');
+$req->setMethod('POST');
+$req->setHeaders(array(
+    'my-sample-header' => 'Lorem ipsum dolor sit amet'
+  ));
+$req->setBody('');
+$response = $req->send();
+echo $response;
+?>
 
-try {
-    $response = $request->send();
-    echo $response->getBody();
-} catch (HttpException $ex) {
-    echo $ex; 
-}?>
