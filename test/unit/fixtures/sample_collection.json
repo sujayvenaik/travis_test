@@ -7,7 +7,7 @@
 	},
 	"item": [
 		{
-			"name": "POST form data with file Copy",
+			"name": "POST text/html with raw Copy",
 			"event": [
 				{
 					"listen": "test",
@@ -39,36 +39,12 @@
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "text/plain"
+						"value": "text/html"
 					}
 				],
 				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "fdjks",
-							"value": "dsf",
-							"type": "text"
-						},
-						{
-							"key": "sdfs",
-							"value": "",
-							"description": "sdf",
-							"type": "file",
-							"disabled": true
-						},
-						{
-							"key": "sdf",
-							"value": "sdf",
-							"type": "text",
-							"disabled": true
-						},
-						{
-							"key": "sdf",
-							"value": "nj",
-							"type": "text"
-						}
-					]
+					"mode": "raw",
+					"raw": "<html>\n  Test Test\n</html>"
 				},
 				"url": {
 					"raw": "https://postman-echo.com/post",
