@@ -7,7 +7,7 @@
 	},
 	"item": [
 		{
-			"name": "Request Headers copy",
+			"name": "POST urlencoded data with disabled entries copy",
 			"event": [
 				{
 					"listen": "test",
@@ -15,42 +15,76 @@
 						"type": "text/javascript",
 						"exec": [
 							"var responseJSON;",
-							"try {",
-							"    tests[\"Body contains headers\"] = responseBody.has(\"headers\");",
-							"    responseJSON = JSON.parse(responseBody);",
-							"    tests[\"Header contains host\"] = \"host\" in responseJSON.headers;",
-							"    tests[\"Header contains test parameter sent as part of request header\"] = \"my-sample-header\" in responseJSON.headers;",
+							"",
+							"try { ",
+							"    responseJSON = JSON.parse(responseBody); ",
+							"    tests['response is valid JSON'] = true;",
 							"}",
-							"catch (e) { }",
+							"catch (e) { ",
+							"    responseJSON = {}; ",
+							"    tests['response is valid JSON'] = false;",
+							"}",
 							"",
 							"",
+							"tests['response has post data'] = _.has(responseJSON, 'data');",
+							"tests['response matches the data posted'] = (responseJSON.data && responseJSON.data.length === 256);",
 							"",
-							""
+							"tests[\"content-type equals text/plain\"] = responseJSON && responseJSON.headers && (responseJSON.headers[\"content-type\"] === 'text/plain');"
 						]
 					}
 				}
 			],
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [
 					{
-						"key": "my-sample-header",
-						"value": "Lorem ipsum dolor sit amet"
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
 					}
 				],
-				"body": {},
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "1",
+							"value": "a",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "2",
+							"value": "b",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "3",
+							"value": "c",
+							"description": "",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "4",
+							"value": "d",
+							"description": "",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
 				"url": {
-					"raw": "https://postman-echo.com/headers",
+					"raw": "https://postman-echo.com/post",
 					"protocol": "https",
 					"host": [
 						"postman-echo",
 						"com"
 					],
 					"path": [
-						"headers"
+						"post"
 					]
 				},
-				"description": "A `GET` request to this endpoint returns the list of all request headers as part of the response JSON.\nIn Postman, sending your own set of headers through the [Headers tab](https://www.getpostman.com/docs/requests#headers?source=echo-collection-app-onboarding) will reveal the headers as part of the response."
+				"description": "The HTTP `POST` request method is meant to transfer data to a server \n(and elicit a response). What data is returned depends on the implementation\nof the server.\n\nA `POST` request can pass parameters to the server using \"Query String \nParameters\", as well as the Request Body. For example, in the following request,\n\n> POST /hi/there?hand=wave\n>\n> <request-body>\n\nThe parameter \"hand\" has the value \"wave\". The request body can be in multiple\nformats. These formats are defined by the MIME type of the request. The MIME \nType can be set using the ``Content-Type`` HTTP header. The most commonly used \nMIME types are:\n\n* `multipart/form-data`\n* `application/x-www-form-urlencoded`\n* `application/json`\n\nThis endpoint echoes the HTTP headers, request parameters, the contents of\nthe request body and the complete URI requested."
 			},
 			"response": []
 		}
