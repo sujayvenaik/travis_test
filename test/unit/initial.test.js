@@ -58,7 +58,6 @@ describe('Request snippet', function () {
                 outputNewman = JSON.parse(outputNewman);
                 delete outputNewman.headers['user-agent'];
                 delete outputNewman.headers['accept-encoding'];
-                delete outputNewman.headers['accept'];
                 outputScript = JSON.parse(outputScript.stdout);
                 delete outputScript.headers['accept-encoding'];
                 delete outputScript.headers['user-agent'];
