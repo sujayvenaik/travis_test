@@ -7,7 +7,7 @@
 	},
 	"item": [
 		{
-			"name": "POST javascript with raw copy",
+			"name": "POST form data with file Copy",
 			"event": [
 				{
 					"listen": "test",
@@ -39,12 +39,36 @@
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "application/javascript"
+						"value": "text/plain"
 					}
 				],
 				"body": {
-					"mode": "raw",
-					"raw": "var val = 6;\nconsole.log(val);"
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "fdjks",
+							"value": "dsf",
+							"type": "text"
+						},
+						{
+							"key": "sdfs",
+							"value": "",
+							"description": "sdf",
+							"type": "file",
+							"disabled": true
+						},
+						{
+							"key": "sdf",
+							"value": "sdf",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "sdf",
+							"value": "nj",
+							"type": "text"
+						}
+					]
 				},
 				"url": {
 					"raw": "https://postman-echo.com/post",

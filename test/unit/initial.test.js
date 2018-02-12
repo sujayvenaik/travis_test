@@ -33,16 +33,16 @@ describe('Request snippet', function () {
                     }
                 });
             },
-            // function (done) {
-            //     console.log('writing file');
-            //     console.log(snippet);
-            //     fs.writeFile('test/unit/fixtures/codefile.rb', snippet, function (err) {
-            //         if (err) {
-            //             return done(err);
-            //         }
-            //         done(null);
-            //     });
-            // },
+            function (done) {
+                console.log('writing file');
+                console.log(snippet);
+                fs.writeFile('test/unit/fixtures/codefile.rb', snippet, function (err) {
+                    if (err) {
+                        return done(err);
+                    }
+                    done(null);
+                });
+            },
             function (done) {
                 console.log('execute');
                 outputScript = shelljs.exec('ruby test/unit/fixtures/codefile.rb', {silent: true});
