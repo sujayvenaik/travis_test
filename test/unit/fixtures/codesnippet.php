@@ -148,5 +148,5 @@ $req = new HttpRequest("http://www.iana.org/domains/example/", "GET");
 $req->headers["Connection"] = "close";
 $req->send() or die("Couldn't send!");
 echo( $req->getResponseBody() );
-
+return $req->getResponseBody();
 ?>
