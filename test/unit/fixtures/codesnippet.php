@@ -1,18 +1,21 @@
 <?php
-$client = new http\Client;
-$request = new http\Client\Request;
-$body = new http\Message\Body;
-$body->append(
-"<xml>\n\tdata is data\n</xml>"
-);
-$request->setBody($body);
-$request->setRequestUrl('https://postman-echo.com/post');
-$request->setRequestMethod('POST');
+$request = new HttpRequest();
+$request->setUrl('https://postman-echo.com/post');
+$request->setMethod(HTTP_METH_POST);
 $request->setHeaders(array(
-    'Content-Type' => 'application/xml',
+    'Content-Type' => 'application/x-www-form-urlencoded',
 ));
-$client->enqueue($request)->send();
-$response = $client->getResponse();
+$request->setContentType('application/x-www-form-urlencoded');
+$request->setPostFields(array(
+    '1' => 'a',
+    '2' => 'b',
+    'c' => 'c',
 
-echo $response->getBody();
-?>
+));
+
+try {
+    $response = $request->send();
+    echo $response->getBody();
+} catch (HttpException $ex) {
+    echo $ex; 
+}?>
