@@ -108,7 +108,7 @@ class HttpRequest {
     do {
       $line = $this->readLine($fp);
       if($line != "") { 
-        $header = split(":", $line);
+        $header = explode(":", $line);
 
         $this->response_headers[$header[0]] = ltrim($header[1]);
       }
