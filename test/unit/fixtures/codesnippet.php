@@ -144,7 +144,7 @@ class HttpRequest {
 }
 
 
-$req = new HttpRequest("http://www.iana.org/domains/example/", "GET");
+$req = new HttpRequest("https://postman-echo.com/post", "POST");
 $req->headers["Connection"] = "close";
 $req->send() or die("Couldn't send!");
 echo( $req->getResponseBody() );
