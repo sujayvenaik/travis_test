@@ -13,7 +13,7 @@ describe('Request snippet', function () {
             outputNewman = '',
             request = collection.items.members[0].request;
             snippet = convert(request, {indentType: 'tab', indentCount: 1});
-        console.log('11');
+
         async.series([
             function (done) {
                 console.log('newman');
@@ -33,19 +33,19 @@ describe('Request snippet', function () {
                     }
                 });
             },
-            function (done) {
-                console.log('writing file');
-                console.log(snippet);
-                fs.writeFile('test/unit/fixtures/code.py', snippet, function (err) {
-                    if (err) {
-                        return done(err);
-                    }
-                    done(null);
-                });
-            },
+            // function (done) {
+            //     console.log('writing file');
+            //     console.log(snippet);
+            //     fs.writeFile('test/unit/fixtures/codefile.rb', snippet, function (err) {
+            //         if (err) {
+            //             return done(err);
+            //         }
+            //         done(null);
+            //     });
+            // },
             function (done) {
                 console.log('execute');
-                outputScript = shelljs.exec('python test/unit/fixtures/code.py', {silent: true});
+                outputScript = shelljs.exec('ruby test/unit/fixtures/codefile.rb', {silent: true});
                 console.log(outputScript);
                 console.log('------');
                 // console.log(JSON.parse(outputNewman));
@@ -58,6 +58,7 @@ describe('Request snippet', function () {
                 outputNewman = JSON.parse(outputNewman);
                 delete outputNewman.headers['user-agent'];
                 delete outputNewman.headers['accept-encoding'];
+                delete outputNewman.headers['accept'];
                 outputScript = JSON.parse(outputScript.stdout);
                 delete outputScript.headers['accept-encoding'];
                 delete outputScript.headers['user-agent'];
