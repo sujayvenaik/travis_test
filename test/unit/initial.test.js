@@ -92,6 +92,9 @@ function runSnippet (codeSnippet, collection, done) {
                             delete result[0].headers[property];
                         });
                     }
+                    if(result[0].url) {
+                        result[0].url = unescape(result[0].url);
+                    }
                 }
                 if (result[1]) {
                     propertiesTodelete.forEach(function (property) {
