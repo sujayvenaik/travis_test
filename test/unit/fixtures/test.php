@@ -3,21 +3,10 @@
 $client = new http\Client;
 $request = new http\Client\Request;
 
-$body = new http\Message\Body;
-$body->addForm(array(
-  '1' => '\'a\'',
-  '2' => '"b"',
-  '\'3\'' => 'c',
-  '"4"' => 'd',
-  'Special' => '!@#$%&*()^_+=`~',
-  'more' => ',./\';[]}{":?><|\\\\'
-), NULL);
-
-$request->setRequestUrl('https://postman-echo.com/post');
-$request->setRequestMethod('POST');
-$request->setBody($body);
-
+$request->setRequestUrl('https://9c76407d-5b8d-4b22-99fb-8c47a85d9848.mock.pstmn.io');
+$request->setRequestMethod('PURGE');
 $client->enqueue($request)->send();
 $response = $client->getResponse();
 
 echo $response->getBody();
+echo "PURGEEEEEEEEEEEEEEEEEEEEEEEEEE";
