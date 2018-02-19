@@ -100,7 +100,7 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "https://postman-echo.com/:action?a=!@$^*()_-`&b=,./';[]}{\":/?><||%",
+					"raw": "https://postman-echo.com/:action?a=!@$^*()_-`&b=,./';[]}{\":/?><||",
 					"protocol": "https",
 					"host": [
 						"postman-echo",
@@ -117,7 +117,7 @@
 						},
 						{
 							"key": "b",
-							"value": ",./';[]}{\":/?><||%",
+							"value": ",./';[]}{\":/?><||",
 							"equals": true
 						}
 					],
