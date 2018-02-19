@@ -1,5 +1,3 @@
-import { unescape } from 'querystring';
-
 var expect = require('chai').expect,
     fs = require('fs'),
     sdk = require('postman-collection'),
