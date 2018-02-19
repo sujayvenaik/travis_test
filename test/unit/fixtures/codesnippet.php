@@ -12,10 +12,6 @@ $body->addForm(array(
 
 $request->setRequestUrl('https://postman-echo.com/post');
 $request->setRequestMethod('POST');
-$request->setHeaders(array(
-        'Content-Type'=> 'multipart/form-data'
-));
-
 $request->setBody($body);
 $client->enqueue($request)->send();
 $response = $client->getResponse();
