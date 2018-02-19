@@ -8,14 +8,15 @@ $body->addForm(array(
     '\'3\'' => 'c',
     '"4"' => 'd',
     'Special' => '!@#$%&*()^_+=`~'
-), null);
+), NULL);
 
-$request->setBody($body);
 $request->setRequestUrl('https://postman-echo.com/post');
 $request->setRequestMethod('POST');
 $request->setHeaders(array(
         'Content-Type'=> 'multipart/form-data'
 ));
+
+$request->setBody($body);
 $client->enqueue($request)->send();
 $response = $client->getResponse();
 echo $response->getBody();
