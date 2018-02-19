@@ -1,13 +1,13 @@
 {
 	"info": {
-		"name": "     p ",
-		"_postman_id": "986ae312-d4f0-44c2-9ce9-79cd953e65bd",
+		"name": "adasd",
+		"_postman_id": "19517558-86d7-4bda-8dea-d3f6f3c2a0f6",
 		"description": "",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "POST text/html with raw Copy",
+			"name": "Request Headers Copy",
 			"event": [
 				{
 					"listen": "test",
@@ -15,73 +15,52 @@
 						"type": "text/javascript",
 						"exec": [
 							"var responseJSON;",
-							"",
-							"try { ",
-							"    responseJSON = JSON.parse(responseBody); ",
-							"    tests['response is valid JSON'] = true;",
+							"try {",
+							"    tests[\"Body contains headers\"] = responseBody.has(\"headers\");",
+							"    responseJSON = JSON.parse(responseBody);",
+							"    tests[\"Header contains host\"] = \"host\" in responseJSON.headers;",
+							"    tests[\"Header contains test parameter sent as part of request header\"] = \"my-sample-header\" in responseJSON.headers;",
 							"}",
-							"catch (e) { ",
-							"    responseJSON = {}; ",
-							"    tests['response is valid JSON'] = false;",
-							"}",
+							"catch (e) { }",
 							"",
 							"",
-							"tests['response has post data'] = _.has(responseJSON, 'data');",
-							"tests['response matches the data posted'] = (responseJSON.data && responseJSON.data.length === 256);",
 							"",
-							"tests[\"content-type equals text/plain\"] = responseJSON && responseJSON.headers && (responseJSON.headers[\"content-type\"] === 'text/plain');"
+							""
 						]
 					}
 				}
 			],
 			"request": {
-				"method": "POST",
+				"method": "GET",
 				"header": [
 					{
-						"key": "Content-Type",
-						"value": "text/html"
+						"key": "my-sample-header",
+						"value": "Lorem ipsum dolor sit amet"
+					},
+					{
+						"key": "testing",
+						"value": "'singlequotes'"
+					},
+					{
+						"key": "TEST",
+						"value": "\"doublequotes\""
 					}
 				],
-				"body": {
-					"mode": "raw",
-					"raw": "<html>\n  Test Test\n</html>"
-				},
+				"body": {},
 				"url": {
-					"raw": "https://postman-echo.com/post",
+					"raw": "https://postman-echo.com/headers",
 					"protocol": "https",
 					"host": [
 						"postman-echo",
 						"com"
 					],
 					"path": [
-						"post"
+						"headers"
 					]
 				},
-				"description": "The HTTP `POST` request method is meant to transfer data to a server \n(and elicit a response). What data is returned depends on the implementation\nof the server.\n\nA `POST` request can pass parameters to the server using \"Query String \nParameters\", as well as the Request Body. For example, in the following request,\n\n> POST /hi/there?hand=wave\n>\n> <request-body>\n\nThe parameter \"hand\" has the value \"wave\". The request body can be in multiple\nformats. These formats are defined by the MIME type of the request. The MIME \nType can be set using the ``Content-Type`` HTTP header. The most commonly used \nMIME types are:\n\n* `multipart/form-data`\n* `application/x-www-form-urlencoded`\n* `application/json`\n\nThis endpoint echoes the HTTP headers, request parameters, the contents of\nthe request body and the complete URI requested."
+				"description": "A `GET` request to this endpoint returns the list of all request headers as part of the response JSON.\nIn Postman, sending your own set of headers through the [Headers tab](https://www.getpostman.com/docs/requests#headers?source=echo-collection-app-onboarding) will reveal the headers as part of the response."
 			},
 			"response": []
-		}
-	],
-	"event": [
-		{
-			"listen": "prerequest",
-			"script": {
-				"id": "f866e339-bfa1-4035-bdf7-d306ac86bd30",
-				"type": "text/javascript",
-				"exec": [
-					""
-				]
-			}
-		},
-		{
-			"listen": "test",
-			"script": {
-				"id": "96e20e60-dc1a-4fe3-a53b-a3207bdbe283",
-				"type": "text/javascript",
-				"exec": [
-					""
-				]
-			}
 		}
 	]
 }

@@ -1,80 +1,141 @@
+import { unescape } from 'querystring';
+
 var expect = require('chai').expect,
-    newman = require('newman'),
-    shelljs = require('shelljs'),
-    sdk = require('postman-collection'),
     fs = require('fs'),
-    async = require('async'),
-    convert = require('../../lib');
+    sdk = require('postman-collection'),
+    exec = require('shelljs').exec,
+    newman = require('newman'),
+    parallel = require('async').parallel,
 
-describe('Request snippet', function () {
-    it('should compare the output of the request from newman', function (finish) {
-        var collection = new sdk.Collection(JSON.parse(fs.readFileSync('test/unit/fixtures/sample_collection.json').toString())),
-            outputScript = '',
-            outputNewman = '',
-            request = collection.items.members[0].request;
-            snippet = convert(request, {indentType: 'tab', indentCount: 1});
+    convert = require('../../lib/index'),
+    mainCollection = require('../unit/fixtures/sample_collection.json');
 
-        async.series([
-            function (done) {
-                console.log('newman');
+    // properties and headers to delete from newman reponse and cli response
+const propertiesTodelete = ['cookies', 'headersSize', 'startedDateTime'],
+    headersTodelete = [
+        'accept-encoding',
+        'user-agent',
+        'cf-ray',
+        'x-request-id',
+        'x-request-start',
+        'connect-time',
+        'x-forwarded-for',
+        'content-type',
+        'content-length',
+        'accept',
+        'cookie',
+        'total-route-time'
+    ];
+
+/**
+ * Executes codesnippet and compares output with newman response
+ * 
+ * @param {String} codeSnippet - code snippet from convert function
+ * @param {Object} collection - sample collection
+ * @param {Function} done - callback for async calls
+ */
+function runSnippet (codeSnippet, collection, done) {
+    fs.writeFile('test/unit/fixtures/codesnippet.php', codeSnippet, function (err) {
+        if (err) {
+            console.error(err);
+            return;
+        }
+        parallel([
+            function (callback) {
+                exec('php test/unit/fixtures/codesnippet.php', function (err, stdout, stderr) {
+                    if (err) {
+                        return callback(err);
+                    }
+                    if (stderr) {
+                        return callback(stderr);
+                    }
+
+                    try {
+                        stdout = JSON.parse(stdout);
+                    }
+                    catch (e) {
+                        console.error(e);
+                    }
+                    callback(null, stdout);
+                });
+            },
+            function (callback) {
                 newman.run({
-                    collection: require('../unit/fixtures/sample_collection.json')
-                }).on('start', function (err) { // on start of run, log to console
+                    collection: collection
+                }).on('request', function (err, summary) {
                     if (err) {
-                        console.error('error');
+                        return callback(err);
                     }
-                }).on('done', function (err, summary) {
-                    if (err || summary.error) {
-                        console.error('collection run encountered an error.');
+
+                    var stdout = summary.response.stream.toString();
+                    try {
+                        stdout = JSON.parse(stdout);
                     }
-                    else {
-                        outputNewman = summary.run.executions[0].response.stream.toString();
-                        done(null);
+                    catch (e) {
+                        console.error(e);
                     }
+                    callback(null, stdout);
                 });
-            },
-            function (done) {
-                console.log('writing file');
-                console.log(snippet);
-                fs.writeFile('test/unit/fixtures/codefile.rb', snippet, function (err) {
-                    if (err) {
-                        return done(err);
-                    }
-                    done(null);
-                });
-            },
-            function (done) {
-                console.log('execute');
-                outputScript = shelljs.exec('ruby test/unit/fixtures/codefile.rb', {silent: true});
-                console.log(outputScript);
-                console.log('------');
-                // console.log(JSON.parse(outputNewman));
-                expect(1).to.be.a('number');
-                done(null);
-            },
-            function (done) {
-                console.log(outputScript);
-                console.log('check');   
-                outputNewman = JSON.parse(outputNewman);
-                delete outputNewman.headers['user-agent'];
-                delete outputNewman.headers['accept-encoding'];
-                outputScript = JSON.parse(outputScript.stdout);
-                delete outputScript.headers['accept-encoding'];
-                delete outputScript.headers['user-agent'];
-                console.log(outputNewman);
-                console.log(outputNewman);
-                // expect(1).to.be.a('number');
-                expect(outputNewman).to.deep.equal(outputScript);
-                done(null);
             }
-        ], function (err) {
+        ], function (err, result) {
             if (err) {
-                console.log('in error');
+                console.log(err);
+            }
+            else if (typeof result[1] !== 'object' && typeof result[0] !== 'object') {
+                expect(result[0].trim()).to.equal(result[1].trim());
             }
             else {
-                console.log('no Error');
-                finish();
+                if (result[0]) {
+                    propertiesTodelete.forEach(function (property) {
+                        delete result[0][property];
+                    });
+                    if (result[0].headers) {
+                        headersTodelete.forEach(function (property) {
+                            delete result[0].headers[property];
+                        });
+                    }
+                }
+                if (result[1]) {
+                    propertiesTodelete.forEach(function (property) {
+                        delete result[1][property];
+                    });
+                    if (result[1].headers) {
+                        headersTodelete.forEach(function (property) {
+                            delete result[1].headers[property];
+                        });
+                    }
+                    if(result[1].url) {
+                        result[1].url = unescape(result[1].url);
+                    }
+                }
+                console.log(result[0]);
+                console.log(result[1]);
+                
+                expect(result[0]).deep.equal(result[1]);
             }
+            done();
         });
-    }).timeout(10000000);
+    });
+}
+
+describe('Curl converter', function () {
+    mainCollection.item.forEach(function (item) {
+        it(item.name, function (done) {
+            var request = new sdk.Request(item.request),
+                collection = {
+                    item: [
+                        {
+                            request: request.toJSON()
+                        }
+                    ]
+                };
+            convert.convert(request, {indentType: 'space', indentCount: 4}, function (err, snippet) {
+                if (err) {
+                    console.error(err);
+                }
+                runSnippet(snippet, collection, done);
+            });
+
+        }).timeout(10000);
+    });
 });
