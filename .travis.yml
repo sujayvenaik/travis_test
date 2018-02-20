@@ -1,9 +1,9 @@
 language: node_js
 node_js: "6"
 before_install:
-  - "yes '' | pecl install pecl_http-2.5.5"
+  - "yes '' | pecl install pecl_http-2.5.5 "
 before_script:
- - "npm install"
+  - "npm install"
 script:
   - "mocha test/unit/initial.test.js"
 cache:
