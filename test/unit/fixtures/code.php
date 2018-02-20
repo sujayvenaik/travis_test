@@ -4,7 +4,7 @@ $client = new http\Client;
 $request = new http\Client\Request;
 
 $request->setRequestUrl('https://www.google.com');
-$request->setRequestMethod('GET');
+$request->setRequestMethod('UNLINK');
 $request->setHeaders(array(
   'TEST' => '\\"doublequotes\\"',
   'testing' => '\'singlequotes\'',
