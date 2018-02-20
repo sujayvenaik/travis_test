@@ -1,9 +1,16 @@
 <?php
 $client = new http\Client;
 $request = new http\Client\Request;
-$request->setRequestUrl('https://9c76407d-5b8d-4b22-99fb-8c47a85d9848.mock.pstmn.io');
-$request->setRequestMethod('COPY');
+$body = new http\Message\Body;
+$body->append('Duis posuere augue vel cursus pharetra. In luctus a ex nec pretium. Praesent neque quam, tincidunt nec leo eget, rutrum vehicula magna.
+Maecenas consequat elementum elit, id semper sem tristique et. Integer pulvinar enim quis consectetur interdum volutpat.');
 
+$request->setRequestUrl('https://postman-echo.com/post');
+$request->setRequestMethod('OPTIONS');
+$request->setBody($body);
+$request->setHeaders(array(
+        'content-type' => 'text/plain'
+));
 $client->enqueue($request)->send();
 $response = $client->getResponse();
 echo $response->getBody();
