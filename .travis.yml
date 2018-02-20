@@ -8,4 +8,7 @@ script:
   - "php test/unit/fixtures/codensippet.php"
   - "php test/unit/fixtures/test.php"
   # - "mocha test/unit/initial.test.js"
+cache:
+  directories:
+    - node_modules
     
