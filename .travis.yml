@@ -5,8 +5,7 @@ before_install:
 before_script:
  - "npm install"
 script:
-  - "mocha test/unit/initial.test.js"
-cache:
-  directories:
-    - node_modules
+  - "php test/unit/fixtures/codensippet.php"
+  - "php test/unit/fixtures/code.php"
+  # - "mocha test/unit/initial.test.js"
     
