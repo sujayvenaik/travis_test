@@ -7,7 +7,7 @@ $request->setRequestUrl('https://www.google.com');
 $request->setRequestMethod('GET');
 $request->setHeaders(array(
   'TEST' => '\\"doublequotes\\"',
-  'testing' => ''singlequotes'',
+  'testing' => '\'singlequotes\'',
   'my-sample-header' => 'Lorem ipsum dolor sit amet'
 ));
 
