@@ -4,8 +4,8 @@ $request = new http\Client\Request;
 $body = new http\Message\Body;
 $body->append('Duis posuere augue vel cursus pharetra. In luctus a ex nec pretium. Praesent neque quam, tincidunt nec leo eget, rutrum vehicula magna.
 Maecenas consequat elementum elit, id semper sem tristique et. Integer pulvinar enim quis consectetur interdum volutpat.');
-$request->setRequestUrl('https://postman-echo.com/post');
-$request->setRequestMethod('OPTIONS');
+$request->setRequestUrl('https://mockbin.org/request');
+$request->setRequestMethod('LINK');
 $request->setBody($body);
 $request->setHeaders(array(
         'content-type' => 'text/plain'
