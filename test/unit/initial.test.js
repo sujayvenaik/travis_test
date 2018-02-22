@@ -130,7 +130,7 @@ describe('Curl converter', function () {
                         }
                     ]
                 };
-            convert.convert(request, {indentType: 'tab', indentCount: 1}, function (err, snippet) {
+            convert.convert(request, {indentType: 'spapce', indentCount: 4}, function (err, snippet) {
                 if (err) {
                     console.error(err);
                 }
