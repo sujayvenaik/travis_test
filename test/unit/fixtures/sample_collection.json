@@ -1,7 +1,7 @@
 {
 	"info": {
-		"name": "Code-Gen Test Cases copy! copy",
-		"_postman_id": "3af85f5f-17df-46de-ac8f-63185eeeff68",
+		"name": "Code-Gen Test Cases copy!",
+		"_postman_id": "43058ce7-94da-0f0f-366e-22b77d566316",
 		"description": "This collection contains requests that will be used to test validity of plugin created to convert postman request into code snippet of particular language.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -335,7 +335,7 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "https://postman-echo.com/:action?a=!@$^*()_-`&b=,./';[]}{\":/?><||",
+					"raw": "https://postman-echo.com/:action?a=!@$^*()_-`%26&b=,./';[]}{\":/?><||\\",
 					"protocol": "https",
 					"host": [
 						"postman-echo",
@@ -347,12 +347,12 @@
 					"query": [
 						{
 							"key": "a",
-							"value": "!@$^*()_-`",
+							"value": "!@$^*()_-`%26",
 							"equals": true
 						},
 						{
 							"key": "b",
-							"value": ",./';[]}{\":/?><||",
+							"value": ",./';[]}{\":/?><||\\",
 							"equals": true
 						}
 					],
@@ -569,7 +569,7 @@
 			},
 			"response": [
 				{
-					"id": "442486ea-b579-4ad6-9bf5-0910256de77e",
+					"id": "cbf344e4-6196-4ba9-a92a-545983352668",
 					"name": "POST json with raw",
 					"originalRequest": {
 						"method": "POST",
@@ -1142,12 +1142,14 @@
 					"raw": "Duis posuere augue vel cursus pharetra. In luctus a ex nec pretium. Praesent neque quam, tincidunt nec leo eget, rutrum vehicula magna.\nMaecenas consequat elementum elit, id semper sem tristique et. Integer pulvinar enim quis consectetur interdum volutpat."
 				},
 				"url": {
-					"raw": "https://www.google.com",
+					"raw": "https://mockbin.org/request",
 					"protocol": "https",
 					"host": [
-						"www",
-						"google",
-						"com"
+						"mockbin",
+						"org"
+					],
+					"path": [
+						"request"
 					]
 				},
 				"description": null
@@ -1169,12 +1171,14 @@
 					"raw": "Duis posuere augue vel cursus pharetra. In luctus a ex nec pretium. Praesent neque quam, tincidunt nec leo eget, rutrum vehicula magna.\nMaecenas consequat elementum elit, id semper sem tristique et. Integer pulvinar enim quis consectetur interdum volutpat."
 				},
 				"url": {
-					"raw": "https://www.google.com",
+					"raw": "https://mockbin.org/request",
 					"protocol": "https",
 					"host": [
-						"www",
-						"google",
-						"com"
+						"mockbin",
+						"org"
+					],
+					"path": [
+						"request"
 					]
 				},
 				"description": null
@@ -1196,12 +1200,14 @@
 					"raw": "Duis posuere augue vel cursus pharetra. In luctus a ex nec pretium. Praesent neque quam, tincidunt nec leo eget, rutrum vehicula magna.\nMaecenas consequat elementum elit, id semper sem tristique et. Integer pulvinar enim quis consectetur interdum volutpat."
 				},
 				"url": {
-					"raw": "https://www.google.com",
+					"raw": "https://mockbin.org/request",
 					"protocol": "https",
 					"host": [
-						"www",
-						"google",
-						"com"
+						"mockbin",
+						"org"
+					],
+					"path": [
+						"request"
 					]
 				},
 				"description": null
@@ -1215,12 +1221,14 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "https://www.google.com",
+					"raw": "https://mockbin.org/request",
 					"protocol": "https",
 					"host": [
-						"www",
-						"google",
-						"com"
+						"mockbin",
+						"org"
+					],
+					"path": [
+						"request"
 					]
 				},
 				"description": null
@@ -1242,12 +1250,14 @@
 					"raw": "Duis posuere augue vel cursus pharetra. In luctus a ex nec pretium. Praesent neque quam, tincidunt nec leo eget, rutrum vehicula magna.\nMaecenas consequat elementum elit, id semper sem tristique et. Integer pulvinar enim quis consectetur interdum volutpat."
 				},
 				"url": {
-					"raw": "https://www.google.com",
+					"raw": "https://mockbin.org/request",
 					"protocol": "https",
 					"host": [
-						"www",
-						"google",
-						"com"
+						"mockbin",
+						"org"
+					],
+					"path": [
+						"request"
 					]
 				},
 				"description": null
@@ -1323,7 +1333,7 @@
 			},
 			"response": [
 				{
-					"id": "1bba47ad-1505-4568-b3be-ee37243ee52f",
+					"id": "5215ff67-e07b-4d33-9770-885b116bbca0",
 					"name": "COPY Request",
 					"originalRequest": {
 						"method": "COPY",
