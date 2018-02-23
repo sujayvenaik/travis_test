@@ -133,7 +133,7 @@ describe('Curl converter', function () {
             convert.convert(request, {indentType: 'spapce', 
                 indentCount: 4,
                 requestTimeout: 100,
-                requestBodyTrim: true,
+                requestBodyTrim: false,
                 addCacheHeader: false,
                 followRedirect: true}, function (err, snippet) {
                 if (err) {
