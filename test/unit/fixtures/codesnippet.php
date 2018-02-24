@@ -6,8 +6,8 @@ $request->setMethod(HTTP_METH_GET);
 
 $request->setHeaders(array(
   'Cache-Control' => 'no-cache',
-  'TEST' => '\\"doublequotes\\"',
-  'testing' => ''singlequotes'',
+  'TEST' => '"doublequotes"',
+  'testing' => '\'singlequotes\'',
   'my-sample-header' => 'Lorem ipsum dolor sit amet'
 ));
 
