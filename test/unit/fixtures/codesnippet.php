@@ -1,11 +1,20 @@
 <?php
-$client = new http\Client;
-$request = new http\Client\Request;
-$request->setRequestUrl('https://9c76407d-5b8d-4b22-99fb-8c47a85d9848.mock.pstmn.io');
-$request->setRequestMethod('COPY');
-$request->setOptions(array('connecttimeout' => 100));
 
-$client->enqueue($request)->send();
-$response = $client->getResponse();
-echo $response->getBody();
-?>
+$request = new HttpRequest();
+$request->setUrl('https://postman-echo.com/headers');
+$request->setMethod(HTTP_METH_GET);
+
+$request->setHeaders(array(
+  'Cache-Control' => 'no-cache',
+  'TEST' => '\\"doublequotes\\"',
+  'testing' => ''singlequotes'',
+  'my-sample-header' => 'Lorem ipsum dolor sit amet'
+));
+
+try {
+  $response = $request->send();
+
+  echo $response->getBody();
+} catch (HttpException $ex) {
+  echo $ex;
+}
