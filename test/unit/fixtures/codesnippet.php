@@ -1,5 +1,5 @@
 <?php
-include_once('../../../lib/util/http.php');
+include('/lib/util/http.php');
 $request = new HttpRequest();
 $request->setUrl('https://postman-echo.com/headers');
 $request->setMethod(HTTP_METH_GET);
