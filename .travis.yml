@@ -1,14 +1,12 @@
 language: node_js
 node_js: "6"
 before_install:
-  - "nvm install 6"
-  - "yes '' | pecl install -f pecl_http-1.7.6"
-  # - "yes '' | pecl install pecl_http-2.5.5 "
+  - "yes '' | pecl install pecl_http-2.5.5 "
 before_script:
  - "npm install"
 script:
-  - "php test/unit/fixtures/codesnippet.php"
-  # - "mocha test/unit/initial.test.js"
+  # - "php test/unit/fixtures/codesnippet.php"
+  - "mocha test/unit/initial.test.js"
 cache:
   directories:
     - node_modules
